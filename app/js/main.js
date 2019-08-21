@@ -6,13 +6,7 @@
 // }
 
 // bolds the subhead if there is no headline
-let subhead = document.getElementsByClassName("chart-subhead"),
-    headline = document.getElementById("chart-head");
-    if (!headline) {
-        for(var i = 0; i < subhead.length; i++) {
-            subhead[i].style.fontWeight = "600";
-        }       
-     }
+
 
 Highcharts.setOptions({
     lang: {
