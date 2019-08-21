@@ -10,7 +10,7 @@ let subhead = document.getElementsByClassName("chart-subhead"),
     headline = document.getElementById("chart-head");
     if (!headline) {
         for(var i = 0; i < subhead.length; i++) {
-            subhead.className += " strong";
+            subhead[i].style.fontWeight = "600";
         }       
      }
 
@@ -23,29 +23,34 @@ Highcharts.setOptions({
 document.addEventListener('DOMContentLoaded', function () {
     const myChart = Highcharts.chart('chart-container', {
         chart: {
-            type: 'bar',
+            type: 'line',
             styledMode: true,
             spacingBottom: 25,
-            spacingRight: 100
+            spacingRight: 100,
+            spacingLeft: 0
         }, 
         title: {
             text: null
         },
         data: {
-            googleSpreadsheetKey: '1YOKb5l2VM4aAB2r20N_1aT_1vEajYrP3U-U3A6lZbC0'
+            googleSpreadsheetKey: '1KjR0KQ0-_Vg6TdANvMYn8eDmVCsVXh0_lToRVusgV_U'
         },
-        // for bar charts only
         plotOptions: {
             series: {
-                groupPadding: 0.1
-            } 
+                marker: {
+                    enabled: false,
+                    symbol: 'circle',
+                    fillColor: '#ffffff',
+                    states: {
+                        hover: {
+                            fillColor: '#ffffff'
+                        }
+                    }
+                }
+            }
         },
         legend: {
-            align: 'right',
-            symbolRadius: 0,
-            verticalAlign: 'top',
-            x: 10,
-            itemMarginTop: -10
+            enabled: false
         },
         xAxis: {
             labels: {
@@ -59,15 +64,19 @@ document.addEventListener('DOMContentLoaded', function () {
             title: false,
             labels: {
                 useHTML: true,
-                overflow: 'allow'
-            }
+                overflow: 'allow',
+                format: '{value:,.0f}'
+            },
+            max: 1200,
+            tickAmount: 5
         },
         credits: {
             enabled: false
         },
         tooltip: {
             shadow: false,
-            padding: 10
+            padding: 10,
+            valuePrefix: '$'
         },
         responsive: {
             rules: [{
